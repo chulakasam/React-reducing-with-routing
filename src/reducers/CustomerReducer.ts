@@ -4,11 +4,13 @@ export const initialState: Customer[] = [];
 
 export function CustomerReducer(state: Customer[] = initialState, action: { type: string, payload: Customer }): Customer[] {
     switch (action.type) {
-        case 'ADD_CUSTOMER':
+            case 'ADD_CUSTOMER':
             // Add the new customer to the existing state array
-            return [...state, action.payload];
-        default:
-            return state;
+                return [...state, action.payload];
+            case 'REMOVE_CUSTOMER':
+                return [...state.filter((customer) => customer.email !== action.payload)];
+            default:
+                return state;
     }
 }
 
